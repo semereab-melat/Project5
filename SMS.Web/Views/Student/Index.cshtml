@@ -1,6 +1,8 @@
 @model IList<Student>
 
 <h3 class="mb-3">Student List</h3>
+<a asp-controller="Student" asp-action="Create" class="btn btn-primary mb-3">Create</a>
+
 
 <table class="table table-hover">
     <thead>
@@ -10,17 +12,24 @@
             <th>Course</th>
             <th>Age</th>
             <th>Actions</th>
+            
         </tr>
     </thead>
+    
     <tbody>
-
+             @foreach (var obj in Model)
+             {
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>@obj.Id</td>
+                <td>@obj.Name</td>
+                <td>@obj.Course</td>
+                <td>@obj.Age</td>
+                <td>@obj.PhotoUrl</td>
+                
+                 <td>
+                     <a asp-controller="Student" asp-action="Details" asp-route-id=@obj.Id>View</a>
+                 </td>
             </tr>
-        
+             }
     </tbody>
 </table>

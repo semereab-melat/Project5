@@ -19,9 +19,9 @@ namespace SMS.Web.Controllers
         public IActionResult Index()
         {
             // TBC - load students using service and pass to view
-           
-            
-            return View();
+
+            var students = svc.GetStudents();
+            return View(students);
         }
 
         // GET /student/details/{id}
@@ -31,7 +31,10 @@ namespace SMS.Web.Controllers
             var s = svc.GetStudent(id);
 
             // TBC check if s is null and return NotFound()
-            
+            if(s == null)
+            {
+                return NotFound();
+            }
 
             // pass student as parameter to the view
             return View(s);
@@ -52,7 +55,7 @@ namespace SMS.Web.Controllers
             if (ModelState.IsValid)
             {
                 // TBC call service AddStudent method using data in s
-                
+                var student = svc.AddStudent(s.Name, s.Course, s.Email, s.Age, s.Grade, s.PhotoUrl);
                 return RedirectToAction(nameof(Index));
             }
             
@@ -67,6 +70,10 @@ namespace SMS.Web.Controllers
             var s = svc.GetStudent(id);
 
             // TBC check if s is null and return NotFound()
+              if(s == null)
+              {
+                return NotFound();
+              }
               
 
             // pass student to view for editing
@@ -81,8 +88,8 @@ namespace SMS.Web.Controllers
             if (ModelState.IsValid)
             {
                 // TBC pass data to service to update
-               
 
+                var updatedstudent = svc.UpdateStudent(s);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -106,12 +113,16 @@ namespace SMS.Web.Controllers
         }
 
         // POST /student/delete/{id}
-        [HttpPost]
+        [HttpPost , ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
             // TBC delete student via service
-           
-            
+           if(ModelState.IsValid)
+           {
+                var deleted = svc.DeleteStudent(id);
+                
+            }
+
             // redirect to the index view
             return RedirectToAction(nameof(Index));
         }
