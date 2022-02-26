@@ -31,8 +31,8 @@
     <!-- add navigation link to redirect to Index action -->
     <a asp-controller="Student" asp-action="Index" class="btn btn-primary mb-3">Home</a>
     <!-- add navigation link to Details action, passing the correct route id parameter --> 
-   <a asp-controller="Student" asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-primary mb-3">Edit</a>
+   <a asp-controller="Student" asp-action="Edit" asp-route-Id="@Model.Id" class="btn btn-secondary mb-3">Edit</a>
     <!-- add navigation link to Delete action, passing the correct route id parameter --> 
-    <a asp-controller="Student" asp-action="Delete" asp-route-Id="@Model.Id"  class="btn btn-primary mb-3">Delete</a>
+    <a asp-controller="Student" asp-action="Delete" asp-route-Id="@Model.Id"  class="btn btn-danger mb-3">Delete</a>
    
 </div>
